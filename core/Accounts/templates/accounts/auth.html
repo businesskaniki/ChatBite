@@ -3,6 +3,7 @@
 {% load static %}
 
 {% block content %}
+<link rel="stylesheet" href="{% static 'authentication/css/auth.css' %}">
   <div class="cont">
     <div class="form sign-in">
       <h2>ChatBite Sign in</h2>
@@ -33,7 +34,8 @@
         </div>
       </div>
       <div class="form sign-up">
-        <form method="post" >
+        <form method="post">
+          {% csrf_token %}
           <h2> ChatBite Sign Up</h2>
           <label>
             <span>Name</span>
@@ -51,9 +53,22 @@
             <span>Confirm Password</span>
             <input type="password">
           </label>
+          {% for field in registration_form %}
+          <p>
+          {% for error in field.errors %}
+          <p style="color: red">{{ error }}</p>
+          {% endfor %}
+          </p>
+          {% endfor %}
+          {% if registration_form.non_field_errors %}
+          <div style="color: red">
+            <p>{{registration_form.non_field_errors}}</p>
+          </div>
+
+				{% endif %}
           <button type="submit" class="submit">Sign Up Now</button>
         </form>
       </div>
     </div>
-  </div>
+  </div><script src="{% static 'authentication/js/auth.js' %}"></script>
 {% endblock content %}
