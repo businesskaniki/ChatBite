@@ -42,7 +42,7 @@ def defualt_backgroung():
 def defualt_profile_frame():
     return "images/profile/defualts/defualt_frame.png"
 
-def upload_loc():
+def upload_loc(self,filename):
     return "images/profile/profile_pictures"
 
 def upload_loc():
@@ -54,9 +54,9 @@ class UserProfile(AbstractBaseUser):
     username = models.CharField(max_length=255,unique=True)
     date_joined = models.DateTimeField(verbose_name='date_joined',auto_now_add=True)
     last_seen = models.DateTimeField(verbose_name='last_seen',auto_now=True)
-    profile_image = models.ImageField(default=defualt_profile, null=True, blank=True, upload_to=upload_loc)
-    background_image = models.ImageField(default=defualt_backgroung, null=True, blank=True, upload_to=upload_loc)
-    profile_frmae = models.ImageField(default=defualt_profile_frame, null=True, blank=True)
+    profile_image = models.ImageField(default=defualt_profile(), null=True, blank=True, upload_to=upload_loc())
+    background_image = models.ImageField(default=defualt_backgroung(), null=True, blank=True, upload_to=upload_loc())
+    profile_frmae = models.ImageField(default=defualt_profile_frame(), null=True, blank=True)
     bite_credit = models.IntegerField(default=0)
     about = models.CharField(max_length=300,blank=True, null=True)
     phone_number = models.CharField(max_length=12, blank=True,null=True)
@@ -73,7 +73,7 @@ class UserProfile(AbstractBaseUser):
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username']
 
-    object = AccountManager()
+    objects = AccountManager()
 
     # For checking permissions. to keep it simple all admin have ALL permissons
     def has_perm(self, perm, obj=None):
