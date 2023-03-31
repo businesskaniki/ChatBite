@@ -14,10 +14,21 @@ const Login = () => {
 
     const userRef = useRef();
     const errRef = useRef();
+    const successRef = useRef();
 
     const [email, setEmail] = useState('');
     const [pwd, setPwd] = useState('');
     const [errMsg, setErrMsg] = useState('');
+    const [successMsg, setSuccessMsg] = useState('');
+
+    const [loggedIn, setLoggedIn] = useState(false);
+
+    useEffect(() => {
+        const token = sessionStorage.getItem('accessToken');
+        if (token) {
+        setLoggedIn(true);
+        }
+    }, []);
 
     useEffect(() => {
         userRef.current.focus();
@@ -38,12 +49,20 @@ const Login = () => {
                     withCredentials: true
                 }
             );
-            console.log(JSON.stringify(response?.data));
-            //console.log(JSON.stringify(response));
             const accessToken = response?.data?.access;
+            const refreshToken = response?.data?.refresh;
+
+            // Set the token to the session storage
+            sessionStorage.setItem('accessToken', accessToken);
+            sessionStorage.setItem('refreshToken', refreshToken);
+
+            // Get the token from the session storage
+            // const token = sessionStorage.getItem('accessToken');
+
             setAuth({ email, pwd, accessToken });
             setEmail('');
             setPwd('');
+            setSuccessMsg('Login successful!');
             navigate(from, { replace: true });
         } catch (err) {
             if (!err?.response) {
@@ -60,9 +79,16 @@ const Login = () => {
     }
 
     return (
-
-        <section>
+        <div>
+        {loggedIn ? (
+            <div>
+            <p>You are logged in!</p>
+            <Link to="/linkpage">Go to the Editor page</Link>
+            </div>
+        ) : (
+            <section>
             <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
+            <p ref={successRef} className={successMsg ? "successmsg" : "offscreen"} aria-live="assertive">{successMsg}</p>
             <h1>Sign In</h1>
             <form onSubmit={handleSubmit}>
                 <label htmlFor="emai">Email:</label>
@@ -93,6 +119,8 @@ const Login = () => {
                 </span>
             </p>
         </section>
+        )}
+        </div>
 
     )
 }
