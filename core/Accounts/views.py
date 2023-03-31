@@ -1,9 +1,10 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework import status
+from rest_framework import generics, status
 from rest_framework_simplejwt.tokens import RefreshToken
 from django.contrib.auth import logout
-from .serializers import RegisterSerializer, LoginSerializer
+from .models import UserProfile
+from .serializers import *
 
 
 
@@ -42,3 +43,28 @@ class LogoutView(APIView):
         logout(request)
         return Response({'message': 'Logged out successfully.'})
 
+
+class UserProfileDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = UserProfile.objects.all()
+    serializer_class = UserProfileSerializer
+
+    def get(self, request, *args, **kwargs):
+        instance = self.get_object()
+        serializer = self.get_serializer(instance)
+        return Response(serializer.data)
+
+    def put(self, request, *args, **kwargs):
+        instance = self.get_object()
+        serializer = self.get_serializer(instance, data=request.data, partial=True)
+
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, *args, **kwargs):
+        instance = self.get_object()
+        serializer = self.get_serializer(instance)
+        serializer.delete(instance)
+        return Response(status=status.HTTP_204_NO_CONTENT)
