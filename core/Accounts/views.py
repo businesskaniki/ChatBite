@@ -7,7 +7,6 @@ from .models import UserProfile
 from .serializers import *
 
 
-
 class RegisterView(APIView):
     def post(self, request):
         serializer = RegisterSerializer(data=request.data)
@@ -32,12 +31,12 @@ class LoginView(APIView):
             response_data = {
                 'refresh': str(token),
                 'access': str(token.access_token),
-                'user_id': user.is_admin
+                'admin': user.is_admin
             }
             return Response(response_data, status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    
+
 class LogoutView(APIView):
     def get(self, request):
         logout(request)
@@ -53,9 +52,10 @@ class UserProfileDetail(generics.RetrieveUpdateDestroyAPIView):
         serializer = self.get_serializer(instance)
         return Response(serializer.data)
 
-    def put(self, request, *args, **kwargs):
+    def patch(self, request, *args, **kwargs):
         instance = self.get_object()
-        serializer = self.get_serializer(instance, data=request.data, partial=True)
+        serializer = self.get_serializer(
+            instance, data=request.data, partial=True)
 
         if serializer.is_valid():
             serializer.save()
