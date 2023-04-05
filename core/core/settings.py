@@ -32,7 +32,9 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
+
 INSTALLED_APPS = [
+    'daphne',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -151,6 +153,8 @@ AUTH_USER_MODEL ='Accounts.UserProfile'
 
 STATIC_URL = 'static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+ASGI_APPLICATION = "core.asgi.application"
 
 
 ###simple jwt token settings
