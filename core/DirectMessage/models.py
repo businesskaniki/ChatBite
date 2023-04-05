@@ -11,6 +11,7 @@ class Message(models.Model):
     image = models.ImageField(upload_to='images/', blank=True, null=True)
     video = models.FileField(upload_to='videos/', blank=True, null=True)
     link = models.URLField(blank=True, null=True)
+    timestamp = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return f'{self.sender.username} to {self.recipient.username}'
