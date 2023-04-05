@@ -52,8 +52,20 @@ class LoginSerializer(serializers.Serializer):
 class UserProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserProfile
-        fields = ['id', 'email', 'username', 'date_joined', 'last_seen', 'profile_image',
-                  'background_image', 'profile_frmae', 'bite_credit', 'about', 'phone_number', 'tire', 'blocked']
+        fields = [
+            'id',
+            'email',
+            'username',
+            'date_joined',
+            'last_seen',
+            'profile_image',
+            'background_image',
+            'profile_frmae',
+            'bite_credit',
+            'about',
+            'phone_number',
+            'tire',
+            'blocked']
         read_only_fields = ['id', 'date_joined', 'last_seen', 'bite_credit']
 
     def patch(self, instance, validated_data):

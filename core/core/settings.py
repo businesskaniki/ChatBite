@@ -69,7 +69,6 @@ CORS_ALLOWED_ORIGINS = [
 CORS_ALLOW_CREDENTIALS = True
 
 
-
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -96,9 +95,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'chatbite',
-        'USER': 'chat7346', 
+        'USER': 'chat7346',
         'PASSWORD': 'kanikikamaa',
-        'HOST': '127.0.0.1', 
+        'HOST': '127.0.0.1',
         'PORT': '5432',
     },
     'test': {
@@ -155,7 +154,7 @@ STATIC_URL = '/static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-AUTH_USER_MODEL ='Accounts.UserProfile'
+AUTH_USER_MODEL = 'Accounts.UserProfile'
 
 # this is static urls
 
@@ -165,7 +164,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 ASGI_APPLICATION = "core.asgi.application"
 
 
-###simple jwt token settings
+# simple jwt token settings
 
 SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(days=1),

@@ -15,7 +15,13 @@ class FriendRequestSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = FriendRequest
-        fields = ('id', 'sender', 'receiver', 'is_accepted', 'is_rejected', 'created_at')
+        fields = (
+            'id',
+            'sender',
+            'receiver',
+            'is_accepted',
+            'is_rejected',
+            'created_at')
 
     def get_sender(self, obj):
         return obj.sender.username
@@ -25,7 +31,8 @@ class FriendRequestSerializer(serializers.ModelSerializer):
 
 
 class FriendRequestCreateSerializer(serializers.ModelSerializer):
-    receiver = serializers.PrimaryKeyRelatedField(queryset=UserProfile.objects.all())
+    receiver = serializers.PrimaryKeyRelatedField(
+        queryset=UserProfile.objects.all())
 
     class Meta:
         model = FriendRequest
@@ -33,8 +40,10 @@ class FriendRequestCreateSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         sender = self.context['request'].user
-        receiver_id = validated_data['receiver'].id  # get the ID of the receiver
-        friend_request = FriendRequest.objects.create(sender=sender, receiver_id=receiver_id)
+        # get the ID of the receiver
+        receiver_id = validated_data['receiver'].id
+        friend_request = FriendRequest.objects.create(
+            sender=sender, receiver_id=receiver_id)
         return friend_request
 
 

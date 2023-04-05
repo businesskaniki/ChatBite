@@ -12,22 +12,33 @@ class Migration(migrations.Migration):
     operations = [
         migrations.AlterModelManagers(
             name='userprofile',
-            managers=[
-            ],
+            managers=[],
         ),
         migrations.AlterField(
             model_name='userprofile',
             name='background_image',
-            field=models.ImageField(blank=True, default='images/profile/defualts/defualt_background.png', null=True, upload_to='images/profile/background_pictures'),
+            field=models.ImageField(
+                blank=True,
+                default='images/profile/defualts/defualt_background.png',
+                null=True,
+                upload_to='images/profile/background_pictures'),
         ),
         migrations.AlterField(
             model_name='userprofile',
             name='profile_frmae',
-            field=models.ImageField(blank=True, default='images/profile/defualts/defualt_frame.png', null=True, upload_to=''),
+            field=models.ImageField(
+                blank=True,
+                default='images/profile/defualts/defualt_frame.png',
+                null=True,
+                upload_to=''),
         ),
         migrations.AlterField(
             model_name='userprofile',
             name='profile_image',
-            field=models.ImageField(blank=True, default='images/profile/defualts/defualt_profile.png', null=True, upload_to='images/profile/background_pictures'),
+            field=models.ImageField(
+                blank=True,
+                default='images/profile/defualts/defualt_profile.png',
+                null=True,
+                upload_to='images/profile/background_pictures'),
         ),
     ]

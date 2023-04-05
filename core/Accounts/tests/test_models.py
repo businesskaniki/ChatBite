@@ -1,6 +1,7 @@
 from django.test import TestCase
 from Accounts.models import UserProfile
 
+
 class UserProfileModelTestCase(TestCase):
     def setUp(self):
         self.user = UserProfile.objects.create_user(
