@@ -100,6 +100,14 @@ DATABASES = {
         'PASSWORD': 'kanikikamaa',
         'HOST': '127.0.0.1', 
         'PORT': '5432',
+    },
+    'test': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'chatbite_test',
+        'USER': 'chat7346',
+        'PASSWORD': 'kanikikamaa',
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
     }
 }
 
