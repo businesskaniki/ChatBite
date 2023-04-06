@@ -1,5 +1,4 @@
-name: django
-
+name: Django CI
 on:
   push:
     branches: [main]
