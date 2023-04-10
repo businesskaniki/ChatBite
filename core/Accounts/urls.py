@@ -3,7 +3,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.auth import views as auth_views
 from rest_framework_simplejwt.views import TokenRefreshView
-from .views import *
+from .views import RegisterView, LogoutView, LoginView, UserProfileDetail
 
 urlpatterns = [
     path("register/", RegisterView.as_view(), name="register"),

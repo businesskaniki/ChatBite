@@ -45,10 +45,6 @@ def upload_loc(self, filename):
     return "images/profile/profile_pictures"
 
 
-def upload_loc():
-    return "images/profile/background_pictures"
-
-
 class UserProfile(AbstractBaseUser):
     email = models.EmailField(unique=True, max_length=200, verbose_name="email")
     username = models.CharField(max_length=255, unique=True)

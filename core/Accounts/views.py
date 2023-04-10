@@ -4,7 +4,7 @@ from rest_framework import generics, status
 from rest_framework_simplejwt.tokens import RefreshToken
 from django.contrib.auth import logout
 from .models import UserProfile
-from .serializers import *
+from .serializers import RegisterSerializer, LoginSerializer, UserProfileSerializer
 
 
 class RegisterView(APIView):
