@@ -4,30 +4,43 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('Accounts', '0001_initial'),
+        ("Accounts", "0001_initial"),
     ]
 
     operations = [
         migrations.AlterModelManagers(
-            name='userprofile',
-            managers=[
-            ],
+            name="userprofile",
+            managers=[],
         ),
         migrations.AlterField(
-            model_name='userprofile',
-            name='background_image',
-            field=models.ImageField(blank=True, default='images/profile/defualts/defualt_background.png', null=True, upload_to='images/profile/background_pictures'),
+            model_name="userprofile",
+            name="background_image",
+            field=models.ImageField(
+                blank=True,
+                default="images/profile/defualts/defualt_background.png",
+                null=True,
+                upload_to="images/profile/background_pictures",
+            ),
         ),
         migrations.AlterField(
-            model_name='userprofile',
-            name='profile_frmae',
-            field=models.ImageField(blank=True, default='images/profile/defualts/defualt_frame.png', null=True, upload_to=''),
+            model_name="userprofile",
+            name="profile_frmae",
+            field=models.ImageField(
+                blank=True,
+                default="images/profile/defualts/defualt_frame.png",
+                null=True,
+                upload_to="",
+            ),
         ),
         migrations.AlterField(
-            model_name='userprofile',
-            name='profile_image',
-            field=models.ImageField(blank=True, default='images/profile/defualts/defualt_profile.png', null=True, upload_to='images/profile/background_pictures'),
+            model_name="userprofile",
+            name="profile_image",
+            field=models.ImageField(
+                blank=True,
+                default="images/profile/defualts/defualt_profile.png",
+                null=True,
+                upload_to="images/profile/background_pictures",
+            ),
         ),
     ]

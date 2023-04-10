@@ -6,7 +6,7 @@ from .models import Friend, FriendRequest
 class FriendSerializer(serializers.ModelSerializer):
     class Meta:
         model = Friend
-        fields = ('id', 'user', 'friend', 'created_at')
+        fields = ("id", "user", "friend", "created_at")
 
 
 class FriendRequestSerializer(serializers.ModelSerializer):
@@ -15,7 +15,14 @@ class FriendRequestSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = FriendRequest
-        fields = ('id', 'sender', 'receiver', 'is_accepted', 'is_rejected', 'created_at')
+        fields = (
+            "id",
+            "sender",
+            "receiver",
+            "is_accepted",
+            "is_rejected",
+            "created_at",
+        )
 
     def get_sender(self, obj):
         return obj.sender.username
@@ -29,23 +36,26 @@ class FriendRequestCreateSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = FriendRequest
-        fields = ('id', 'sender', 'receiver', 'created_at')
+        fields = ("id", "sender", "receiver", "created_at")
 
     def create(self, validated_data):
-        sender = self.context['request'].user
-        receiver_id = validated_data['receiver'].id  # get the ID of the receiver
-        friend_request = FriendRequest.objects.create(sender=sender, receiver_id=receiver_id)
+        sender = self.context["request"].user
+        # get the ID of the receiver
+        receiver_id = validated_data["receiver"].id
+        friend_request = FriendRequest.objects.create(
+            sender=sender, receiver_id=receiver_id
+        )
         return friend_request
 
 
 class FriendRequestUpdateSerializer(serializers.ModelSerializer):
     class Meta:
         model = FriendRequest
-        fields = ('id', 'is_accepted', 'is_rejected', 'created_at')
+        fields = ("id", "is_accepted", "is_rejected", "created_at")
 
     def update(self, instance, validated_data):
-        if validated_data.get('is_accepted', False):
+        if validated_data.get("is_accepted", False):
             instance.accept()
-        elif validated_data.get('is_rejected', False):
+        elif validated_data.get("is_rejected", False):
             instance.reject()
         return instance
