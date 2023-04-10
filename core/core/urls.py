@@ -19,11 +19,10 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', include('Accounts.urls')),
-    path('friends/', include('Friends.urls')),
+    path("admin/", admin.site.urls),
+    path("", include("Accounts.urls")),
+    path("friends/", include("Friends.urls")),
 ]
 
 if settings.DEBUG:
-    urlpatterns += static(settings.STATIC_URL,
-                          document_root=settings.STATIC_ROOT)
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

@@ -1,5 +1,5 @@
 from django.db import models
-from django. contrib.auth.models import AbstractBaseUser, BaseUserManager
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 
 
 class AccountManager(BaseUserManager):
@@ -20,9 +20,7 @@ class AccountManager(BaseUserManager):
 
     def create_superuser(self, email, username, password):
         user = self.create_user(
-            email=self.normalize_email(email),
-            username=username,
-            password=password
+            email=self.normalize_email(email), username=username, password=password
         )
         user.is_admin = True
         user.is_staff = True
@@ -52,26 +50,19 @@ def upload_loc():
 
 
 class UserProfile(AbstractBaseUser):
-    email = models.EmailField(
-        unique=True,
-        max_length=200,
-        verbose_name='email')
+    email = models.EmailField(unique=True, max_length=200, verbose_name="email")
     username = models.CharField(max_length=255, unique=True)
-    date_joined = models.DateTimeField(
-        verbose_name='date_joined', auto_now_add=True)
-    last_seen = models.DateTimeField(verbose_name='last_seen', auto_now=True)
+    date_joined = models.DateTimeField(verbose_name="date_joined", auto_now_add=True)
+    last_seen = models.DateTimeField(verbose_name="last_seen", auto_now=True)
     profile_image = models.ImageField(
-        default=defualt_profile(),
-        null=True,
-        blank=True,
-        upload_to=upload_loc())
+        default=defualt_profile(), null=True, blank=True, upload_to=upload_loc()
+    )
     background_image = models.ImageField(
-        default=defualt_backgroung(),
-        null=True,
-        blank=True,
-        upload_to=upload_loc())
+        default=defualt_backgroung(), null=True, blank=True, upload_to=upload_loc()
+    )
     profile_frmae = models.ImageField(
-        default=defualt_profile_frame(), null=True, blank=True)
+        default=defualt_profile_frame(), null=True, blank=True
+    )
     bite_credit = models.IntegerField(default=0)
     about = models.CharField(max_length=300, blank=True, null=True)
     phone_number = models.CharField(max_length=12, blank=True, null=True)
@@ -84,8 +75,8 @@ class UserProfile(AbstractBaseUser):
     is_superuser = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
 
-    USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['username']
+    USERNAME_FIELD = "email"
+    REQUIRED_FIELDS = ["username"]
 
     objects = AccountManager()
 
@@ -95,6 +86,7 @@ class UserProfile(AbstractBaseUser):
 
         # Does this user have permission to view this app? (ALWAYS YES FOR
         # SIMPLICITY)
+
     def has_module_perms(self, app_label):
         return True
 
