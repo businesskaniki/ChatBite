@@ -41,21 +41,15 @@ def defualt_profile_frame():
     return "images/profile/defualts/defualt_frame.png"
 
 
-def upload_loc(self, filename):
-    return "images/profile/profile_pictures"
-
-
 class UserProfile(AbstractBaseUser):
     email = models.EmailField(unique=True, max_length=200, verbose_name="email")
     username = models.CharField(max_length=255, unique=True)
     date_joined = models.DateTimeField(verbose_name="date_joined", auto_now_add=True)
     last_seen = models.DateTimeField(verbose_name="last_seen", auto_now=True)
     profile_image = models.ImageField(
-        default=defualt_profile(), null=True, blank=True, upload_to=upload_loc()
-    )
+        default=defualt_profile(), null=True, blank=True, upload_to="images/profile/profile_pictures")
     background_image = models.ImageField(
-        default=defualt_backgroung(), null=True, blank=True, upload_to=upload_loc()
-    )
+        default=defualt_backgroung(), null=True, blank=True, upload_to="images/profile/profile_pictures")
     profile_frmae = models.ImageField(
         default=defualt_profile_frame(), null=True, blank=True
     )

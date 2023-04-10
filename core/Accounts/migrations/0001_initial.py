@@ -51,7 +51,7 @@ class Migration(migrations.Migration):
                         blank=True,
                         default=Accounts.models.defualt_profile,
                         null=True,
-                        upload_to=Accounts.models.upload_loc,
+                        upload_to="images/profile/profile_pictures",
                     ),
                 ),
                 (
@@ -60,7 +60,7 @@ class Migration(migrations.Migration):
                         blank=True,
                         default=Accounts.models.defualt_backgroung,
                         null=True,
-                        upload_to=Accounts.models.upload_loc,
+                        upload_to="images/profile/profile_pictures",
                     ),
                 ),
                 (
