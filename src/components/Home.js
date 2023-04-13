@@ -1,38 +1,23 @@
-import { useNavigate, Link } from 'react-router-dom';
-import { useContext } from 'react';
-import AuthContext from '../context/AuthProvider';
-import Navbar from './Navbar';
+import CenterBar from './centerbar/CenterBar';
+import LeftBar from './leftbar/LeftBar';
+import Navbar from './navigation/Navbar';
+import RightBar from './rightbar/RightBar';
 
-const Home = () => {
-  const { setAuth } = useContext(AuthContext);
-  const navigate = useNavigate();
-
-  const logout = async () => {
-    // if used in more components, this should be in context
-    // axios to /logout endpoint
-    setAuth({});
-    navigate('/linkpage');
-  };
-
-  return (
-    <section className='h-screen'>
+const Home = () =>
+  (
+    <section className="h-screen bg-white">
       <Navbar />
-      <h1>Home</h1>
-      <br />
-      <p>You are logged in!</p>
-      <br />
-      <Link to="/editor">Go to the Editor page</Link>
-      <br />
-      <Link to="/admin">Go to the Admin page</Link>
-      <br />
-      <Link to="/lounge">Go to the Lounge</Link>
-      <br />
-      <Link to="/linkpage">Go to the link page</Link>
-      <div className="flexGrow">
-        <button onClick={logout}>Sign Out</button>
+      <div className="bg-white h-5/6 flex px-12 my-8 g-16">
+        <div className="w-1/3 bg-black rounded-lg">
+          <LeftBar />
+        </div>
+        <div className="w-1/3">
+          <CenterBar />
+        </div>
+        <div className="w-1/3 h-1/2 bg-black rounded-lg">
+          <RightBar />
+        </div>
       </div>
     </section>
   );
-};
-
 export default Home;
