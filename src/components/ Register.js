@@ -100,7 +100,7 @@ const Register = () => {
         <section>
           <h1>Success!</h1>
           <p>
-            <a href="#">Sign In</a>
+            <Link>sign in</Link>
           </p>
         </section>
       ) : (
@@ -218,7 +218,7 @@ const Register = () => {
               Must match the first password input field.
             </p>
 
-            <button disabled={!!(!validName || !validPwd || !validMatch)}>Sign Up</button>
+            <button type="button" disabled={!!(!validName || !validPwd || !validMatch)}>Sign Up</button>
           </form>
           <p>
             Already registered?
