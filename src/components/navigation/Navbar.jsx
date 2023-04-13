@@ -4,7 +4,7 @@ import { FaHome, FaEnvelope, FaBell, FaEdit } from "react-icons/fa";
 
 function Navbar() {
   return (
-    <nav className="flex items-center justify-between bg-blue-700 py-4 px-4 fixed bottom-0 left-0 right-0 lg:relative lg:bg-blue-700 lg:py-4 lg:px-8 shadow-md">
+    <nav className="flex items-center justify-between bg-blue-700 py-2 px-4 fixed bottom-0 left-0 right-0 lg:relative lg:bg-blue-700 lg:py-2 lg:px-8 shadow-md">
       <div className="hidden lg:flex items-center justify-between">
         <div className="flex-shrink-0 flex items-center justify-between">
           <img

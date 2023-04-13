@@ -1,10 +1,10 @@
 import { Routes, Route } from 'react-router-dom';
-import Register from './components/ Register';
-import Login from './components/Login';
+import Register from './components/auth/ Register';
+import Login from './components/auth/Login';
 import Home from './components/Home';
 import Layout from './components/Layout';
-import Missing from './components/Missing';
-import Unauthorized from './components/ Unauthorized';
+import Missing from './components/missing/Missing';
+import Unauthorized from './components/auth/ Unauthorized';
 
 function App() {
   return (
